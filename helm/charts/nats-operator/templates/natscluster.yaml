@@ -56,7 +56,9 @@ metadata:
   labels:
     app: nats
     nats_cluster: {{ .Values.cluster.name }}
-    prometheus: {{ .Values.cluster.metrics.servicemonitor.prometheusInstance }}
+    {{- with .Values.cluster.metrics.servicemonitor.additionalLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   jobLabel: nats-{{ .Values.cluster.name }}
   selector:
@@ -65,6 +67,20 @@ spec:
       nats_cluster: {{ .Values.cluster.name }}
   endpoints:
   - port: metrics
-    interval: 60s
+    path: {{ .Values.cluster.metrics.serviceMonitor.path }}
+    {{- with .Values.cluster.metrics.servicemonitor.interval }}
+    interval: {{ . }}
+    {{- end }}
+    {{- with .Values.cluster.metrics.servicemonitor.scrapeTimeout  }}
+    scrapeTimeout: {{ . }}
+    {{- end }}
+    {{- if .Values.cluster.metrics.servicemonitor.metricRelabelings }}
+    metricRelabelings:
+    {{ toYaml .Values.cluster.metrics.servicemonitor.metricRelabelings | indent 4 }}
+    {{- end }}
+    {{- if .Values.cluster.metrics.servicemonitor.relabelings }}
+    relabelings:
+    {{ toYaml .Values.cluster.metrics.servicemonitor.relabelings | nindent 4 }}
+    {{- end }}
 {{- end }}
 {{- end }}

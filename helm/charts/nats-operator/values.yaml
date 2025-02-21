@@ -188,4 +188,17 @@ cluster:
     ##
     servicemonitor:
       enabled: false
-      prometheusInstance: default
+      # -- Set of labels to transfer from the Kubernetes Service onto the target
+      additionalLabels: {}
+      # -- Set how frequently Prometheus should scrape
+      interval: 60s
+      # -- Set timeout for scrape
+      scrapeTimeout: 10s
+      # -- Set path to metrics path
+      path: /metrics
+      # -- Set of labels to transfer from the Kubernetes Service onto the target
+      targetLabels: []
+      # -- MetricRelabelConfigs to apply to samples before ingestion
+      metricRelabelings: []
+      # -- Set relabel_configs as per https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config
+      relabelings: []
