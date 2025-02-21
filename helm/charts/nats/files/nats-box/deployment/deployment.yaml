@@ -5,6 +5,8 @@ metadata:
   name: {{ .Values.natsBox.deployment.name }}
   labels:
     {{- include "natsBox.labels" $ | nindent 4 }}
+  annotations:
+    {{- include "natsBox.annotations" $ | nindent 4 }}
 spec:
   selector:
     matchLabels:

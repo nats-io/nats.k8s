@@ -6,6 +6,8 @@ metadata:
   name: {{ .name }}
   labels:
     {{- include "nats.labels" $ | nindent 4 }}
+  annotations:
+    {{- include "nats.annotations" $ | nindent 4 }}
 spec:
   {{- with .className }}
   ingressClassName: {{ . | quote }}

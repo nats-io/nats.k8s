@@ -5,6 +5,8 @@ metadata:
   name: {{ .Values.podDisruptionBudget.name }}
   labels:
     {{- include "nats.labels" $ | nindent 4 }}
+  annotations:
+    {{- include "nats.annotations" $ | nindent 4 }}
 spec:
   maxUnavailable: 1
   selector:

@@ -1,6 +1,8 @@
 metadata:
   labels:
     {{- include "natsBox.labels" $ | nindent 4 }}
+  annotations:
+    {{- include "natsBox.annotations" $ | nindent 4 }}
 spec:
   containers:
   {{- with .Values.natsBox.container }}

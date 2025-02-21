@@ -2,6 +2,7 @@ metadata:
   labels:
     {{- include "nats.labels" $ | nindent 4 }}
   annotations:
+    {{- include "nats.annotations" $ | nindent 4 }}
     {{- if .Values.podTemplate.configChecksumAnnotation }}
     {{- $configMap := include "nats.loadMergePatch" (merge (dict "file" "config-map.yaml" "ctx" $) $.Values.configMap) }}
     checksum/config: {{ sha256sum $configMap }}

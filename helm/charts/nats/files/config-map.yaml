@@ -5,6 +5,8 @@ metadata:
   name: {{ .Values.configMap.name }}
   labels:
     {{- include "nats.labels" $ | nindent 4 }}
+  annotations:
+    {{- include "nats.annotations" $ | nindent 4 }}
 data:
   nats.conf: |
     {{- include "nats.formatConfig" .config | nindent 4 }}
