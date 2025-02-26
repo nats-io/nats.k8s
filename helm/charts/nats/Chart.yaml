@@ -1,12 +1,12 @@
 apiVersion: v2
-appVersion: 2.10.25
+appVersion: 2.10.26
 description: A Helm chart for the NATS.io High Speed Cloud Native Distributed Communications Technology.
 name: nats
 keywords:
 - nats
 - messaging
 - cncf
-version: 1.2.10
+version: 1.2.11
 home: http://github.com/nats-io/k8s
 maintainers:
 - email: info@nats.io
